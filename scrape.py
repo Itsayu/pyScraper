@@ -19,21 +19,12 @@ for url in urls:
     soup = BeautifulSoup(html_page.content, 'lxml')
 
 
-# ------------NAME/HEADER OF THE PAGE USINF BeautifulSoup------------
-# print(soup.title)
-# --------------OR------------
-# title = soup.find("title")
-# print(title)
-
     header_info = soup.find_all("div", id="quote-header-info")[0]
     stock_title = header_info.find("h1").get_text()
     current_price = header_info.find("div", class_="My(6px) Pos(r) smartphone_Mt(6px) W(100%)").find("fin-streamer")
 
     stock.append(stock_title)
     stock.append(current_price)
-
-    # print(stock_title)
-    # print(current_price)
 
     table_info = soup.find_all("div", class_="D(ib) W(1/2) Bxz(bb) Pend(12px) Va(t) ie-7_D(i) smartphone_D(b) smartphone_W(100%) smartphone_Pend(0px) smartphone_BdY smartphone_Bdc($seperatorColor)")[0].find_all("tr")
 
@@ -49,9 +40,3 @@ for url in urls:
 csv_file.close()
 
 send_mail.send(filename=today)
-
-# ----------------FOR EXECT TITLE/NAME/HEADER OF THE PAGE---------------
-
-# title = soup.find("title").get_text()
-# print(title)
-
